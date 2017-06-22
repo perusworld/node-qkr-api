@@ -7,13 +7,13 @@ npm install github:perusworld/node-qkr-api --save
 
 ## Create instance ##
 ```javascript
-import { QKRApi } from 'node-qkr-api';
+var qkr = require('node-qkr-api');
 
-let qkrApi = new QKRApi({
-        publicKey: process.env.QKR_PUBLIC_KEY,
-        privateKey: process.env.QKR_PRIVATE_KEY,
-        urlPrefix: process.env.QKR_URL
-    });
+var qkrApi = new qkr.QKRApi({
+    publicKey: process.env.QKR_PUBLIC_KEY,
+    privateKey: process.env.QKR_PRIVATE_KEY,
+    urlPrefix: process.env.QKR_URL
+});
 
 ```
 
