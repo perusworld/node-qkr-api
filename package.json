@@ -1,0 +1,55 @@
+{
+    "name": "node-qkr-api",
+    "version": "1.0.0",
+    "description": "Simple Node.js library to interact with Mastercard Qkr! APIs",
+    "main": "dist/index",
+    "types": "dist/index",
+    "scripts": {
+        "build": "tsc",
+        "test": "jest"
+    },
+    "jest": {
+        "globals": {
+            "__TS_CONFIG__": "tsconfig.json"
+        },
+        "moduleFileExtensions": [
+            "ts",
+            "js"
+        ],
+        "transform": {
+            "^.+\\.(ts|tsx)$": "./node_modules/ts-jest/preprocessor.js"
+        },
+        "testMatch": [
+            "**/test/**/*.test.(ts|js)"
+        ],
+        "testEnvironment": "node"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/perusworld/node-qkr-api.git"
+    },
+    "keywords": [
+        "nodejs",
+        "qkr",
+        "api"
+    ],
+    "author": "Saravana Perumal Shanmugam <saravanaperumal@msn.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/perusworld/node-qkr-api/issues"
+    },
+    "homepage": "https://github.com/perusworld/node-qkr-api",
+    "devDependencies": {
+        "@types/jest": "^19.2.4",
+        "@types/jsonwebtoken": "^7.2.1",
+        "@types/node": "^7.0.31",
+        "@types/request": "0.0.43",
+        "jest": "^20.0.4",
+        "ts-jest": "^20.0.6",
+        "typescript": "^2.3.4"
+    },
+    "dependencies": {
+        "jsonwebtoken": "^7.4.1",
+        "request": "^2.81.0"
+    }
+}
