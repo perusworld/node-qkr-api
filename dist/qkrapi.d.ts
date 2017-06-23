@@ -36,4 +36,8 @@ export declare class QKRApi extends JWTRequest {
      * buyCart
      */
     buyCart(req: any): Promise<any>;
+    /**
+     * getLightbox
+     */
+    getLightbox(req: any): Promise<any>;
 }

@@ -129,5 +129,17 @@ export class QKRApi extends JWTRequest {
         });        
     }
 
+    /**
+     * getLightbox
+     */
+    public getLightbox(req:any): Promise<any>{
+        return super.buildAndSendRequest({
+            url: `${this.conf.urlPrefix}/lightbox`,
+            method: 'POST',
+            payload: req
+        }).then(resp => {
+            return resp;
+        });        
+    }
 }
 

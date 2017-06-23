@@ -119,6 +119,18 @@ class QKRApi extends jwtrequest_1.JWTRequest {
             return resp;
         });
     }
+    /**
+     * getLightbox
+     */
+    getLightbox(req) {
+        return super.buildAndSendRequest({
+            url: `${this.conf.urlPrefix}/lightbox`,
+            method: 'POST',
+            payload: req
+        }).then(resp => {
+            return resp;
+        });
+    }
 }
 exports.QKRApi = QKRApi;
 //# sourceMappingURL=qkrapi.js.map
