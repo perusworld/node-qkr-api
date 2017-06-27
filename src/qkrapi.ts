@@ -27,8 +27,8 @@ export class QKRApi extends JWTRequest {
             "api.qkr.com/timestamp": "" + this.getTimestamp(),
             "api.qkr.com/nonce": "" + this.getNonce()
         };
-        if (this.userAuth && !ctx.anonAuth) {
-            ret["api.qkr.com/token"] = this.userAuth.accessToken.token;
+        if (ctx.userAuth) {
+            ret["api.qkr.com/token"] = ctx.userAuth.accessToken.token;
         }
         return ret;
     }
@@ -40,8 +40,7 @@ export class QKRApi extends JWTRequest {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/securityQuestion`,
             method: 'GET',
-            payload: {},
-            anonAuth: true
+            payload: {}
         }).then(resp => {
             return resp.list;
         });
@@ -55,8 +54,7 @@ export class QKRApi extends JWTRequest {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/user`,
             method: 'POST',
-            payload: regReq,
-            anonAuth: true
+            payload: regReq
         }).then(resp => {
             return resp;
         });
@@ -75,7 +73,6 @@ export class QKRApi extends JWTRequest {
                 password: password
             }
         }).then(resp => {
-            this.userAuth = resp;
             return resp;
         });
     }
@@ -87,8 +84,7 @@ export class QKRApi extends JWTRequest {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/merchant`,
             method: 'GET',
-            payload: {},
-            anonAuth: true
+            payload: {}
         }).then(resp => {
             return resp.list;
         });
@@ -101,19 +97,19 @@ export class QKRApi extends JWTRequest {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/prodGroup/${id}`,
             method: 'GET',
-            payload: {},
-            anonAuth: true
+            payload: {}
         });
     }
 
     /**
      * getCarts
  : Promise<any>    */
-    public getCarts(): Promise<any> {
+    public getCarts(userAuth: any): Promise<any> {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/cart`,
             method: 'GET',
-            payload: {}
+            payload: {},
+            userAuth: userAuth
         }).then(resp => {
             return resp.list;
         });
@@ -122,11 +118,12 @@ export class QKRApi extends JWTRequest {
     /**
      * addCart
      */
-    public addCart(req: any): Promise<any> {
+    public addCart(userAuth: any, req: any): Promise<any> {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/cartItem`,
             method: 'POST',
-            payload: req
+            payload: req,
+            userAuth: userAuth
         }).then(resp => {
             return resp;
         });
@@ -135,11 +132,12 @@ export class QKRApi extends JWTRequest {
     /**
      * getCards
      */
-    public getCards(): Promise<any> {
+    public getCards(userAuth: any): Promise<any> {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/card`,
             method: 'GET',
-            payload: {}
+            payload: {},
+            userAuth: userAuth
         }).then(resp => {
             return resp.list;
         });
@@ -148,11 +146,12 @@ export class QKRApi extends JWTRequest {
     /**
      * doPayment
      */
-    public doPayment(req: any): Promise<any> {
+    public doPayment(userAuth: any, req: any): Promise<any> {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/payment`,
             method: 'POST',
-            payload: req
+            payload: req,
+            userAuth: userAuth
         }).then(resp => {
             return resp;
         });
@@ -161,11 +160,12 @@ export class QKRApi extends JWTRequest {
     /**
      * buyCart
      */
-    public buyCart(req: any): Promise<any> {
+    public buyCart(userAuth: any, req: any): Promise<any> {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/trans`,
             method: 'POST',
-            payload: req
+            payload: req,
+            userAuth: userAuth
         }).then(resp => {
             return resp;
         });

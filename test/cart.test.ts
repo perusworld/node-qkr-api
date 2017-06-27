@@ -8,8 +8,10 @@ describe('check cart checkout', () => {
     it('should get checkout cart', (done) => {
         let qkrApi = qkrInstance();
         let ctx = <any>{};
+        let userAuth = null;
         qkrApi.login(email, password).then(resp => {
-            return qkrApi.getCarts();
+            userAuth = resp;
+            return qkrApi.getCarts(userAuth);
         }).then(resp => {
             if (0 == resp.length) {
                 console.log('No cart, so building one');
@@ -20,7 +22,7 @@ describe('check cart checkout', () => {
                     return qkrApi.getProducts(resp[0].outlets[0].prodGroupSummaries[0].id);
                 }).then(resp => {
                     console.log('Got products');
-                    return qkrApi.addCart({
+                    return qkrApi.addCart(userAuth,{
                         locatedScanId: resp.locatedScanId,
                         outletId: ctx.outletId,
                         purchaseNote: "Some note",
@@ -29,7 +31,7 @@ describe('check cart checkout', () => {
                     });
                 }).then(resp => {
                     console.log('built cart');
-                    return qkrApi.getCarts();;
+                    return qkrApi.getCarts(userAuth);;
                 }).catch(err => {
                     console.log(err);
                     expect(err).toBeNull();
@@ -41,10 +43,10 @@ describe('check cart checkout', () => {
         }).then(resp => {
             console.log('Got carts');
             ctx.cartInfo = resp;
-            return qkrApi.getCards();
+            return qkrApi.getCards(userAuth);
         }).then(resp => {
             console.log('Got cards');
-            return qkrApi.buyCart({
+            return qkrApi.buyCart(userAuth,{
                 amountMinorUnits: ctx.cartInfo[0].amountMinorUnits,
                 cardId: resp[0].id,
                 cartId: ctx.cartInfo[0].cartId,
