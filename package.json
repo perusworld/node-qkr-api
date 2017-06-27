@@ -1,6 +1,6 @@
 {
     "name": "node-qkr-api",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Simple Node.js library to interact with Mastercard Qkr! APIs",
     "main": "dist/index",
     "types": "dist/index",

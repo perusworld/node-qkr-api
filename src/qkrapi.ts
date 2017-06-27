@@ -1,5 +1,18 @@
 import { JWTRequest } from "./jwtrequest";
 
+export interface UserRegistration {
+    emailAddress: string,
+    password: string,
+    firstName: string,
+    lastName: string,
+    countryOfResidence: string,
+    language: string,
+    phoneNumber: string,
+    phoneNumberCountryCode: string,
+    securityQuestion: string,
+    securityQuestionAnswer: string
+};
+
 export class QKRApi extends JWTRequest {
 
     urlConf: any;
@@ -18,6 +31,35 @@ export class QKRApi extends JWTRequest {
             ret["api.qkr.com/token"] = this.userAuth.accessToken.token;
         }
         return ret;
+    }
+
+    /**
+     * getSecurityQuestions
+ :any    */
+    public getSecurityQuestions(): Promise<any> {
+        return super.buildAndSendRequest({
+            url: `${this.conf.urlPrefix}/securityQuestion`,
+            method: 'GET',
+            payload: {},
+            anonAuth: true
+        }).then(resp => {
+            return resp.list;
+        });
+    };
+
+    /**
+     * register
+     */
+    public register(regReq: UserRegistration): Promise<any> {
+        this.userAuth = null;
+        return super.buildAndSendRequest({
+            url: `${this.conf.urlPrefix}/user`,
+            method: 'POST',
+            payload: regReq,
+            anonAuth: true
+        }).then(resp => {
+            return resp;
+        });
     }
 
     /**
@@ -100,46 +142,46 @@ export class QKRApi extends JWTRequest {
             payload: {}
         }).then(resp => {
             return resp.list;
-        });        
+        });
     }
 
     /**
      * doPayment
      */
-    public doPayment(req:any): Promise<any>{
+    public doPayment(req: any): Promise<any> {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/payment`,
             method: 'POST',
             payload: req
         }).then(resp => {
             return resp;
-        });        
+        });
     }
 
     /**
      * buyCart
      */
-    public buyCart(req:any): Promise<any>{
+    public buyCart(req: any): Promise<any> {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/trans`,
             method: 'POST',
             payload: req
         }).then(resp => {
             return resp;
-        });        
+        });
     }
 
     /**
      * getLightbox
      */
-    public getLightbox(req:any): Promise<any>{
+    public getLightbox(req: any): Promise<any> {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/lightbox`,
             method: 'POST',
             payload: req
         }).then(resp => {
             return resp;
-        });        
+        });
     }
 }
 

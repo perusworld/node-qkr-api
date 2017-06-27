@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const jwtrequest_1 = require("./jwtrequest");
+;
 class QKRApi extends jwtrequest_1.JWTRequest {
     constructor(conf) {
         super(conf);
@@ -16,6 +17,34 @@ class QKRApi extends jwtrequest_1.JWTRequest {
             ret["api.qkr.com/token"] = this.userAuth.accessToken.token;
         }
         return ret;
+    }
+    /**
+     * getSecurityQuestions
+ :any    */
+    getSecurityQuestions() {
+        return super.buildAndSendRequest({
+            url: `${this.conf.urlPrefix}/securityQuestion`,
+            method: 'GET',
+            payload: {},
+            anonAuth: true
+        }).then(resp => {
+            return resp.list;
+        });
+    }
+    ;
+    /**
+     * register
+     */
+    register(regReq) {
+        this.userAuth = null;
+        return super.buildAndSendRequest({
+            url: `${this.conf.urlPrefix}/user`,
+            method: 'POST',
+            payload: regReq,
+            anonAuth: true
+        }).then(resp => {
+            return resp;
+        });
     }
     /**
      * login

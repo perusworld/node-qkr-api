@@ -1,9 +1,29 @@
 import { JWTRequest } from "./jwtrequest";
+export interface UserRegistration {
+    emailAddress: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+    countryOfResidence: string;
+    language: string;
+    phoneNumber: string;
+    phoneNumberCountryCode: string;
+    securityQuestion: string;
+    securityQuestionAnswer: string;
+}
 export declare class QKRApi extends JWTRequest {
     urlConf: any;
     private userAuth;
     constructor(conf: any);
     buildJWTHeader(ctx: any): any;
+    /**
+     * getSecurityQuestions
+ :any    */
+    getSecurityQuestions(): Promise<any>;
+    /**
+     * register
+     */
+    register(regReq: UserRegistration): Promise<any>;
     /**
      * login
      */
