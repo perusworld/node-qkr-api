@@ -13,8 +13,8 @@ class QKRApi extends jwtrequest_1.JWTRequest {
             "api.qkr.com/timestamp": "" + this.getTimestamp(),
             "api.qkr.com/nonce": "" + this.getNonce()
         };
-        if (this.userAuth && !ctx.anonAuth) {
-            ret["api.qkr.com/token"] = this.userAuth.accessToken.token;
+        if (ctx.userAuth) {
+            ret["api.qkr.com/token"] = ctx.userAuth.accessToken.token;
         }
         return ret;
     }
@@ -25,8 +25,7 @@ class QKRApi extends jwtrequest_1.JWTRequest {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/securityQuestion`,
             method: 'GET',
-            payload: {},
-            anonAuth: true
+            payload: {}
         }).then(resp => {
             return resp.list;
         });
@@ -40,8 +39,7 @@ class QKRApi extends jwtrequest_1.JWTRequest {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/user`,
             method: 'POST',
-            payload: regReq,
-            anonAuth: true
+            payload: regReq
         }).then(resp => {
             return resp;
         });
@@ -59,7 +57,6 @@ class QKRApi extends jwtrequest_1.JWTRequest {
                 password: password
             }
         }).then(resp => {
-            this.userAuth = resp;
             return resp;
         });
     }
@@ -70,8 +67,7 @@ class QKRApi extends jwtrequest_1.JWTRequest {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/merchant`,
             method: 'GET',
-            payload: {},
-            anonAuth: true
+            payload: {}
         }).then(resp => {
             return resp.list;
         });
@@ -84,18 +80,18 @@ class QKRApi extends jwtrequest_1.JWTRequest {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/prodGroup/${id}`,
             method: 'GET',
-            payload: {},
-            anonAuth: true
+            payload: {}
         });
     }
     /**
      * getCarts
  : Promise<any>    */
-    getCarts() {
+    getCarts(userAuth) {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/cart`,
             method: 'GET',
-            payload: {}
+            payload: {},
+            userAuth: userAuth
         }).then(resp => {
             return resp.list;
         });
@@ -103,11 +99,12 @@ class QKRApi extends jwtrequest_1.JWTRequest {
     /**
      * addCart
      */
-    addCart(req) {
+    addCart(userAuth, req) {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/cartItem`,
             method: 'POST',
-            payload: req
+            payload: req,
+            userAuth: userAuth
         }).then(resp => {
             return resp;
         });
@@ -115,11 +112,12 @@ class QKRApi extends jwtrequest_1.JWTRequest {
     /**
      * getCards
      */
-    getCards() {
+    getCards(userAuth) {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/card`,
             method: 'GET',
-            payload: {}
+            payload: {},
+            userAuth: userAuth
         }).then(resp => {
             return resp.list;
         });
@@ -127,11 +125,12 @@ class QKRApi extends jwtrequest_1.JWTRequest {
     /**
      * doPayment
      */
-    doPayment(req) {
+    doPayment(userAuth, req) {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/payment`,
             method: 'POST',
-            payload: req
+            payload: req,
+            userAuth: userAuth
         }).then(resp => {
             return resp;
         });
@@ -139,11 +138,12 @@ class QKRApi extends jwtrequest_1.JWTRequest {
     /**
      * buyCart
      */
-    buyCart(req) {
+    buyCart(userAuth, req) {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/trans`,
             method: 'POST',
-            payload: req
+            payload: req,
+            userAuth: userAuth
         }).then(resp => {
             return resp;
         });
