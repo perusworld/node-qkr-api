@@ -144,6 +144,34 @@ export class QKRApi extends JWTRequest {
     }
 
     /**
+     * addCard
+     */
+    public addCard(userAuth: any, req: any): Promise<any> {
+        return super.buildAndSendRequest({
+            url: `${this.conf.urlPrefix}/card`,
+            method: 'POST',
+            payload: req,
+            userAuth: userAuth
+        }).then(resp => {
+            return resp;
+        });
+    }
+
+    /**
+     * deleteCard
+     */
+    public deleteCard(userAuth: any, id: any): Promise<any> {
+        return super.buildAndSendRequest({
+            url: `${this.conf.urlPrefix}/card/${id}`,
+            method: 'DELETE',
+            payload: {},
+            userAuth: userAuth
+        }).then(resp => {
+            return resp;
+        });
+    }
+
+    /**
      * doPayment
      */
     public doPayment(userAuth: any, req: any): Promise<any> {

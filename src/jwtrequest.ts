@@ -56,7 +56,7 @@ export abstract class JWTRequest {
     private buildHeaderString(ctx: any): Promise<any> {
         return new Promise((resolve, reject) => {
             try {
-                if ('GET' == ctx.method) {
+                if ('GET' == ctx.method || 'DELETE' == ctx.method) {
                     ctx.headerString = "JWS " + ctx.jwt;
                 } else {
                     ctx.payload = ctx.jwt;
@@ -78,7 +78,7 @@ export abstract class JWTRequest {
                 method: ctx.method,
                 headers: <any>{}
             };
-            if ('GET' == req.method) {
+            if ('GET' == req.method || 'DELETE' == req.method) {
                 req.headers.Authorization = ctx.headerString;
             } else {
                 req.body = ctx.jwt;
