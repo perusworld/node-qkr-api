@@ -17,7 +17,8 @@ var qkrApi = new qkr.QKRApi({
 
 ```
 
-## Get merchants ##
+## Sample Calls (check test folder for complete list) ## 
+### Get merchants ###
 ```javascript
 qkrApi.getMerchants().then(resp => {
     console.log(JSON.stringify(resp, null, 2));
