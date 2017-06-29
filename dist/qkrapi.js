@@ -123,6 +123,32 @@ class QKRApi extends jwtrequest_1.JWTRequest {
         });
     }
     /**
+     * addCard
+     */
+    addCard(userAuth, req) {
+        return super.buildAndSendRequest({
+            url: `${this.conf.urlPrefix}/card`,
+            method: 'POST',
+            payload: req,
+            userAuth: userAuth
+        }).then(resp => {
+            return resp;
+        });
+    }
+    /**
+     * deleteCard
+     */
+    deleteCard(userAuth, id) {
+        return super.buildAndSendRequest({
+            url: `${this.conf.urlPrefix}/card/${id}`,
+            method: 'DELETE',
+            payload: {},
+            userAuth: userAuth
+        }).then(resp => {
+            return resp;
+        });
+    }
+    /**
      * doPayment
      */
     doPayment(userAuth, req) {

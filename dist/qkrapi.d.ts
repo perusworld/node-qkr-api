@@ -49,6 +49,14 @@ export declare class QKRApi extends JWTRequest {
      */
     getCards(userAuth: any): Promise<any>;
     /**
+     * addCard
+     */
+    addCard(userAuth: any, req: any): Promise<any>;
+    /**
+     * deleteCard
+     */
+    deleteCard(userAuth: any, id: any): Promise<any>;
+    /**
      * doPayment
      */
     doPayment(userAuth: any, req: any): Promise<any>;

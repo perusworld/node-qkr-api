@@ -48,7 +48,7 @@ class JWTRequest {
     buildHeaderString(ctx) {
         return new Promise((resolve, reject) => {
             try {
-                if ('GET' == ctx.method) {
+                if ('GET' == ctx.method || 'DELETE' == ctx.method) {
                     ctx.headerString = "JWS " + ctx.jwt;
                 }
                 else {
@@ -69,7 +69,7 @@ class JWTRequest {
                 method: ctx.method,
                 headers: {}
             };
-            if ('GET' == req.method) {
+            if ('GET' == req.method || 'DELETE' == req.method) {
                 req.headers.Authorization = ctx.headerString;
             }
             else {
