@@ -86,7 +86,7 @@ class JWTRequest {
                     resolve(JSON.parse(body));
                 }
                 else {
-                    reject(body);
+                    reject(body ? JSON.parse(body) : body);
                 }
             });
         });

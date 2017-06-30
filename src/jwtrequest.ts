@@ -92,7 +92,7 @@ export abstract class JWTRequest {
                 } else if (200 == response.statusCode) {
                     resolve(JSON.parse(body));
                 } else {
-                    reject(body);
+                    reject(body ? JSON.parse(body) : body);
                 }
             });
         });
