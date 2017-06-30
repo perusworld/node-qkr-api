@@ -1,5 +1,8 @@
 # Simple Node.js library to interact with Mastercard Qkr! APIs #
 
+If you are looking to call Qkr! APIs via a backend server then head over to [node-qkr-api-server](https://github.com/perusworld/node-qkr-api-server)
+
+
 ## Install ##
 ```bash
 npm install github:perusworld/node-qkr-api --save
@@ -17,7 +20,7 @@ var qkrApi = new qkr.QKRApi({
 
 ```
 
-## Sample Calls (check test folder for complete list) ## 
+## Sample Calls (check [test](./test) folder for complete list) ## 
 ### Get merchants ###
 ```javascript
 qkrApi.getMerchants().then(resp => {
