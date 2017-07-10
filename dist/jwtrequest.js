@@ -8,10 +8,10 @@ class JWTRequest {
             var hrtime = process.hrtime();
             return "" + (hrtime[0] * 1e9 + hrtime[1]);
         };
-        this.conf = Object.assign({ algorithm: 'HS256', publicKey: '', privateKey: '' }, conf);
-        this.conf.privateKeyDecoded = new Buffer(this.conf.privateKey, 'base64');
+        this.conf = Object.assign({ algorithm: "HS256", publicKey: "", privateKey: "" }, conf);
+        this.conf.privateKeyDecoded = new Buffer(this.conf.privateKey, "base64");
         if (this.conf.httpProxy && "" !== this.conf.httpProxy) {
-            console.log('using proxy', this.conf.httpProxy);
+            console.log("using proxy", this.conf.httpProxy);
         }
     }
     getTimestamp() {
@@ -48,7 +48,7 @@ class JWTRequest {
     buildHeaderString(ctx) {
         return new Promise((resolve, reject) => {
             try {
-                if ('GET' == ctx.method || 'DELETE' == ctx.method) {
+                if ("GET" == ctx.method || "DELETE" == ctx.method) {
                     ctx.headerString = "JWS " + ctx.jwt;
                 }
                 else {
@@ -69,7 +69,7 @@ class JWTRequest {
                 method: ctx.method,
                 headers: {}
             };
-            if ('GET' == req.method || 'DELETE' == req.method) {
+            if ("GET" == req.method || "DELETE" == req.method) {
                 req.headers.Authorization = ctx.headerString;
             }
             else {

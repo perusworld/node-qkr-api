@@ -24,7 +24,7 @@ class QKRApi extends jwtrequest_1.JWTRequest {
     getItem(userAuth, id, endPoint) {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/${endPoint}/${id}`,
-            method: 'GET',
+            method: "GET",
             payload: {},
             userAuth: userAuth
         }).then(resp => {
@@ -37,7 +37,7 @@ class QKRApi extends jwtrequest_1.JWTRequest {
     getItems(userAuth, endPoint) {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/${endPoint}`,
-            method: 'GET',
+            method: "GET",
             payload: {},
             userAuth: userAuth
         }).then(resp => {
@@ -50,7 +50,7 @@ class QKRApi extends jwtrequest_1.JWTRequest {
     addItem(userAuth, req, endPoint) {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/${endPoint}`,
-            method: 'POST',
+            method: "POST",
             payload: req,
             userAuth: userAuth
         }).then(resp => {
@@ -63,7 +63,7 @@ class QKRApi extends jwtrequest_1.JWTRequest {
     updateItem(userAuth, id, req, endPoint) {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/${endPoint}/${id}`,
-            method: 'PUT',
+            method: "PUT",
             payload: req,
             userAuth: userAuth
         }).then(resp => {
@@ -76,7 +76,7 @@ class QKRApi extends jwtrequest_1.JWTRequest {
     deleteItem(userAuth, id, endPoint) {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/${endPoint}/${id}`,
-            method: 'DELETE',
+            method: "DELETE",
             payload: {},
             userAuth: userAuth
         }).then(resp => {
@@ -89,7 +89,7 @@ class QKRApi extends jwtrequest_1.JWTRequest {
     getSecurityQuestions() {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/securityQuestion`,
-            method: 'GET',
+            method: "GET",
             payload: {}
         }).then(resp => {
             return resp.list;
@@ -103,7 +103,7 @@ class QKRApi extends jwtrequest_1.JWTRequest {
         this.userAuth = null;
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/user`,
-            method: 'POST',
+            method: "POST",
             payload: regReq
         }).then(resp => {
             return resp;
@@ -116,7 +116,7 @@ class QKRApi extends jwtrequest_1.JWTRequest {
         this.userAuth = null;
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/userSession`,
-            method: 'POST',
+            method: "POST",
             payload: {
                 emailAddress: email,
                 password: password
@@ -131,7 +131,7 @@ class QKRApi extends jwtrequest_1.JWTRequest {
     getMerchants() {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/merchant`,
-            method: 'GET',
+            method: "GET",
             payload: {}
         }).then(resp => {
             return resp.list;
@@ -144,7 +144,7 @@ class QKRApi extends jwtrequest_1.JWTRequest {
     getProducts(id) {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/prodGroup/${id}`,
-            method: 'GET',
+            method: "GET",
             payload: {}
         });
     }
@@ -152,49 +152,49 @@ class QKRApi extends jwtrequest_1.JWTRequest {
      * getCarts
  : Promise<any>    */
     getCarts(userAuth) {
-        return this.getItems(userAuth, 'cart');
+        return this.getItems(userAuth, "cart");
     }
     /**
      * addCart
      */
     addCart(userAuth, req) {
-        return this.addItem(userAuth, req, 'cartItem');
+        return this.addItem(userAuth, req, "cartItem");
     }
     /**
      * getCards
      */
     getCards(userAuth) {
-        return this.getItems(userAuth, 'card');
+        return this.getItems(userAuth, "card");
     }
     /**
      * addCard
      */
     addCard(userAuth, req) {
-        return this.addItem(userAuth, req, 'card');
+        return this.addItem(userAuth, req, "card");
     }
     /**
      * updateCard
      */
     updateCard(userAuth, id, req, endPoint) {
-        return this.updateItem(userAuth, id, req, 'card');
+        return this.updateItem(userAuth, id, req, "card");
     }
     /**
      * deleteCard
      */
     deleteCard(userAuth, id) {
-        return this.deleteItem(userAuth, id, 'card');
+        return this.deleteItem(userAuth, id, "card");
     }
     /**
      * doPayment
      */
     doPayment(userAuth, req) {
-        return this.addItem(userAuth, req, 'payment');
+        return this.addItem(userAuth, req, "payment");
     }
     /**
      * buyCart
      */
     buyCart(userAuth, req) {
-        return this.addItem(userAuth, req, 'trans');
+        return this.addItem(userAuth, req, "trans");
     }
     /**
      * getLightbox
@@ -202,7 +202,7 @@ class QKRApi extends jwtrequest_1.JWTRequest {
     getLightbox(req) {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/lightbox`,
-            method: 'POST',
+            method: "POST",
             payload: req
         }).then(resp => {
             return resp;
@@ -212,31 +212,31 @@ class QKRApi extends jwtrequest_1.JWTRequest {
      * getAddresses
      */
     getAddresses(userAuth) {
-        return this.getItems(userAuth, 'address');
+        return this.getItems(userAuth, "address");
     }
     /**
      * getAddress
      */
     getAddress(userAuth, id) {
-        return this.getItem(userAuth, id, 'address');
+        return this.getItem(userAuth, id, "address");
     }
     /**
      * addAddress
      */
     addAddress(userAuth, req) {
-        return this.addItem(userAuth, req, 'address');
+        return this.addItem(userAuth, req, "address");
     }
     /**
      * updateAddress
      */
     updateAddress(userAuth, id, req, endPoint) {
-        return this.updateItem(userAuth, id, req, 'address');
+        return this.updateItem(userAuth, id, req, "address");
     }
     /**
      * deleteAddress
      */
     deleteAddress(userAuth, id) {
-        return this.deleteItem(userAuth, id, 'address');
+        return this.deleteItem(userAuth, id, "address");
     }
 }
 exports.QKRApi = QKRApi;

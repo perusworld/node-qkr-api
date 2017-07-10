@@ -1,19 +1,19 @@
 import * as request from "request";
-import * as jwt from 'jsonwebtoken';
+import * as jwt from "jsonwebtoken";
 
 export abstract class JWTRequest {
     conf: any;
     public constructor(conf: any) {
         this.conf = {
-            algorithm: 'HS256',
-            publicKey: '',
-            privateKey: '',
+            algorithm: "HS256",
+            publicKey: "",
+            privateKey: "",
             ...conf
         };
-        this.conf.privateKeyDecoded = new Buffer(this.conf.privateKey, 'base64');
+        this.conf.privateKeyDecoded = new Buffer(this.conf.privateKey, "base64");
 
         if (this.conf.httpProxy && "" !== this.conf.httpProxy) {
-            console.log('using proxy', this.conf.httpProxy);
+            console.log("using proxy", this.conf.httpProxy);
         }
     }
 
@@ -56,7 +56,7 @@ export abstract class JWTRequest {
     private buildHeaderString(ctx: any): Promise<any> {
         return new Promise((resolve, reject) => {
             try {
-                if ('GET' == ctx.method || 'DELETE' == ctx.method) {
+                if ("GET" == ctx.method || "DELETE" == ctx.method) {
                     ctx.headerString = "JWS " + ctx.jwt;
                 } else {
                     ctx.payload = ctx.jwt;
@@ -78,7 +78,7 @@ export abstract class JWTRequest {
                 method: ctx.method,
                 headers: <any>{}
             };
-            if ('GET' == req.method || 'DELETE' == req.method) {
+            if ("GET" == req.method || "DELETE" == req.method) {
                 req.headers.Authorization = ctx.headerString;
             } else {
                 req.body = ctx.jwt;

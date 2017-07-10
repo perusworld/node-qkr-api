@@ -1,16 +1,16 @@
 import { JWTRequest } from "./jwtrequest";
 
 export interface UserRegistration {
-    emailAddress: string,
-    password: string,
-    firstName: string,
-    lastName: string,
-    countryOfResidence: string,
-    language: string,
-    phoneNumber: string,
-    phoneNumberCountryCode: string,
-    securityQuestion: string,
-    securityQuestionAnswer: string
+    emailAddress: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+    countryOfResidence: string;
+    language: string;
+    phoneNumber: string;
+    phoneNumberCountryCode: string;
+    securityQuestion: string;
+    securityQuestionAnswer: string;
 };
 
 export class QKRApi extends JWTRequest {
@@ -39,7 +39,7 @@ export class QKRApi extends JWTRequest {
     public getItem(userAuth: any, id: any, endPoint: string): Promise<any> {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/${endPoint}/${id}`,
-            method: 'GET',
+            method: "GET",
             payload: {},
             userAuth: userAuth
         }).then(resp => {
@@ -53,7 +53,7 @@ export class QKRApi extends JWTRequest {
     public getItems(userAuth: any, endPoint: string): Promise<any> {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/${endPoint}`,
-            method: 'GET',
+            method: "GET",
             payload: {},
             userAuth: userAuth
         }).then(resp => {
@@ -67,7 +67,7 @@ export class QKRApi extends JWTRequest {
     public addItem(userAuth: any, req: any, endPoint: string): Promise<any> {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/${endPoint}`,
-            method: 'POST',
+            method: "POST",
             payload: req,
             userAuth: userAuth
         }).then(resp => {
@@ -81,7 +81,7 @@ export class QKRApi extends JWTRequest {
     public updateItem(userAuth: any, id: any, req: any, endPoint: string): Promise<any> {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/${endPoint}/${id}`,
-            method: 'PUT',
+            method: "PUT",
             payload: req,
             userAuth: userAuth
         }).then(resp => {
@@ -95,7 +95,7 @@ export class QKRApi extends JWTRequest {
     public deleteItem(userAuth: any, id: any, endPoint: string): Promise<any> {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/${endPoint}/${id}`,
-            method: 'DELETE',
+            method: "DELETE",
             payload: {},
             userAuth: userAuth
         }).then(resp => {
@@ -110,7 +110,7 @@ export class QKRApi extends JWTRequest {
     public getSecurityQuestions(): Promise<any> {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/securityQuestion`,
-            method: 'GET',
+            method: "GET",
             payload: {}
         }).then(resp => {
             return resp.list;
@@ -124,7 +124,7 @@ export class QKRApi extends JWTRequest {
         this.userAuth = null;
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/user`,
-            method: 'POST',
+            method: "POST",
             payload: regReq
         }).then(resp => {
             return resp;
@@ -138,7 +138,7 @@ export class QKRApi extends JWTRequest {
         this.userAuth = null;
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/userSession`,
-            method: 'POST',
+            method: "POST",
             payload: {
                 emailAddress: email,
                 password: password
@@ -154,7 +154,7 @@ export class QKRApi extends JWTRequest {
     public getMerchants(): Promise<any> {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/merchant`,
-            method: 'GET',
+            method: "GET",
             payload: {}
         }).then(resp => {
             return resp.list;
@@ -167,7 +167,7 @@ export class QKRApi extends JWTRequest {
     public getProducts(id: string): Promise<any> {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/prodGroup/${id}`,
-            method: 'GET',
+            method: "GET",
             payload: {}
         });
     }
@@ -176,56 +176,56 @@ export class QKRApi extends JWTRequest {
      * getCarts
  : Promise<any>    */
     public getCarts(userAuth: any): Promise<any> {
-        return this.getItems(userAuth, 'cart');
+        return this.getItems(userAuth, "cart");
     }
 
     /**
      * addCart
      */
     public addCart(userAuth: any, req: any): Promise<any> {
-        return this.addItem(userAuth, req, 'cartItem');
+        return this.addItem(userAuth, req, "cartItem");
     }
 
     /**
      * getCards
      */
     public getCards(userAuth: any): Promise<any> {
-        return this.getItems(userAuth, 'card');
+        return this.getItems(userAuth, "card");
     }
 
     /**
      * addCard
      */
     public addCard(userAuth: any, req: any): Promise<any> {
-        return this.addItem(userAuth, req, 'card');
+        return this.addItem(userAuth, req, "card");
     }
 
     /**
      * updateCard
      */
     public updateCard(userAuth: any, id: any, req: any, endPoint: string): Promise<any> {
-        return this.updateItem(userAuth, id, req, 'card');
+        return this.updateItem(userAuth, id, req, "card");
     }
 
     /**
      * deleteCard
      */
     public deleteCard(userAuth: any, id: any): Promise<any> {
-        return this.deleteItem(userAuth, id, 'card');
+        return this.deleteItem(userAuth, id, "card");
     }
 
     /**
      * doPayment
      */
     public doPayment(userAuth: any, req: any): Promise<any> {
-        return this.addItem(userAuth, req, 'payment');
+        return this.addItem(userAuth, req, "payment");
     }
 
     /**
      * buyCart
      */
     public buyCart(userAuth: any, req: any): Promise<any> {
-        return this.addItem(userAuth, req, 'trans');
+        return this.addItem(userAuth, req, "trans");
     }
 
     /**
@@ -234,7 +234,7 @@ export class QKRApi extends JWTRequest {
     public getLightbox(req: any): Promise<any> {
         return super.buildAndSendRequest({
             url: `${this.conf.urlPrefix}/lightbox`,
-            method: 'POST',
+            method: "POST",
             payload: req
         }).then(resp => {
             return resp;
@@ -245,35 +245,35 @@ export class QKRApi extends JWTRequest {
      * getAddresses
      */
     public getAddresses(userAuth: any): Promise<any> {
-        return this.getItems(userAuth, 'address');
+        return this.getItems(userAuth, "address");
     }
 
     /**
      * getAddress
      */
     public getAddress(userAuth: any, id: any): Promise<any> {
-        return this.getItem(userAuth, id, 'address');
+        return this.getItem(userAuth, id, "address");
     }
 
     /**
      * addAddress
      */
     public addAddress(userAuth: any, req: any): Promise<any> {
-        return this.addItem(userAuth, req, 'address');
+        return this.addItem(userAuth, req, "address");
     }
 
     /**
      * updateAddress
      */
     public updateAddress(userAuth: any, id: any, req: any, endPoint: string): Promise<any> {
-        return this.updateItem(userAuth, id, req, 'address');
+        return this.updateItem(userAuth, id, req, "address");
     }
 
     /**
      * deleteAddress
      */
     public deleteAddress(userAuth: any, id: any): Promise<any> {
-        return this.deleteItem(userAuth, id, 'address');
+        return this.deleteItem(userAuth, id, "address");
     }
 
 }
