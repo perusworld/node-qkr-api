@@ -241,5 +241,40 @@ export class QKRApi extends JWTRequest {
         });
     }
 
+    /**
+     * getAddresses
+     */
+    public getAddresses(userAuth: any): Promise<any> {
+        return this.getItems(userAuth, 'address');
+    }
+
+    /**
+     * getAddress
+     */
+    public getAddress(userAuth: any, id: any): Promise<any> {
+        return this.getItem(userAuth, id, 'address');
+    }
+
+    /**
+     * addAddress
+     */
+    public addAddress(userAuth: any, req: any): Promise<any> {
+        return this.addItem(userAuth, req, 'address');
+    }
+
+    /**
+     * updateAddress
+     */
+    public updateAddress(userAuth: any, id: any, req: any, endPoint: string): Promise<any> {
+        return this.updateItem(userAuth, id, req, 'address');
+    }
+
+    /**
+     * deleteAddress
+     */
+    public deleteAddress(userAuth: any, id: any): Promise<any> {
+        return this.deleteItem(userAuth, id, 'address');
+    }
+
 }
 
