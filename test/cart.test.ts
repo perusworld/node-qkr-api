@@ -58,6 +58,7 @@ describe('check cart checkout', () => {
             }).catch(err => {
                 console.log(err);
                 expect(err).toBeNull();
+                done();
             });
         });
 
