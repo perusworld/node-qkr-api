@@ -45,6 +45,7 @@ describe('check cards', () => {
       done();
     }).catch(err => {
       console.log(err);
+      expect(err).toBeNull();
       done();
     });
   });
