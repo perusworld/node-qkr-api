@@ -3,7 +3,7 @@ import { qkrInstance } from './base.test'
 let email = process.env.QKR_TEST_USER;
 let password = process.env.QKR_TEST_PWD;
 
-describe('check uswer login', () => {
+describe('check user login', () => {
 
     it('should login user', (done) => {
         let qkrApi = qkrInstance();
