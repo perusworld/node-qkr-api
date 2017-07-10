@@ -34,6 +34,77 @@ export class QKRApi extends JWTRequest {
     }
 
     /**
+     * getItem
+     */
+    public getItem(userAuth: any, id: any, endPoint: string): Promise<any> {
+        return super.buildAndSendRequest({
+            url: `${this.conf.urlPrefix}/${endPoint}/${id}`,
+            method: 'GET',
+            payload: {},
+            userAuth: userAuth
+        }).then(resp => {
+            return resp;
+        });
+    }
+
+    /**
+     * getItems
+     */
+    public getItems(userAuth: any, endPoint: string): Promise<any> {
+        return super.buildAndSendRequest({
+            url: `${this.conf.urlPrefix}/${endPoint}`,
+            method: 'GET',
+            payload: {},
+            userAuth: userAuth
+        }).then(resp => {
+            return resp.list;
+        });
+    }
+
+    /**
+     * addItem
+     */
+    public addItem(userAuth: any, req: any, endPoint: string): Promise<any> {
+        return super.buildAndSendRequest({
+            url: `${this.conf.urlPrefix}/${endPoint}`,
+            method: 'POST',
+            payload: req,
+            userAuth: userAuth
+        }).then(resp => {
+            return resp;
+        });
+    }
+
+    /**
+     * updateItem
+     */
+    public updateItem(userAuth: any, id: any, req: any, endPoint: string): Promise<any> {
+        return super.buildAndSendRequest({
+            url: `${this.conf.urlPrefix}/${endPoint}/${id}`,
+            method: 'PUT',
+            payload: req,
+            userAuth: userAuth
+        }).then(resp => {
+            return resp;
+        });
+    }
+
+    /**
+     * deleteItem
+     */
+    public deleteItem(userAuth: any, id: any, endPoint: string): Promise<any> {
+        return super.buildAndSendRequest({
+            url: `${this.conf.urlPrefix}/${endPoint}/${id}`,
+            method: 'DELETE',
+            payload: {},
+            userAuth: userAuth
+        }).then(resp => {
+            return resp;
+        });
+    }
+
+
+    /**
      * getSecurityQuestions
  :any    */
     public getSecurityQuestions(): Promise<any> {
@@ -105,98 +176,56 @@ export class QKRApi extends JWTRequest {
      * getCarts
  : Promise<any>    */
     public getCarts(userAuth: any): Promise<any> {
-        return super.buildAndSendRequest({
-            url: `${this.conf.urlPrefix}/cart`,
-            method: 'GET',
-            payload: {},
-            userAuth: userAuth
-        }).then(resp => {
-            return resp.list;
-        });
+        return this.getItems(userAuth, 'cart');
     }
 
     /**
      * addCart
      */
     public addCart(userAuth: any, req: any): Promise<any> {
-        return super.buildAndSendRequest({
-            url: `${this.conf.urlPrefix}/cartItem`,
-            method: 'POST',
-            payload: req,
-            userAuth: userAuth
-        }).then(resp => {
-            return resp;
-        });
+        return this.addItem(userAuth, req, 'cartItem');
     }
 
     /**
      * getCards
      */
     public getCards(userAuth: any): Promise<any> {
-        return super.buildAndSendRequest({
-            url: `${this.conf.urlPrefix}/card`,
-            method: 'GET',
-            payload: {},
-            userAuth: userAuth
-        }).then(resp => {
-            return resp.list;
-        });
+        return this.getItems(userAuth, 'card');
     }
 
     /**
      * addCard
      */
     public addCard(userAuth: any, req: any): Promise<any> {
-        return super.buildAndSendRequest({
-            url: `${this.conf.urlPrefix}/card`,
-            method: 'POST',
-            payload: req,
-            userAuth: userAuth
-        }).then(resp => {
-            return resp;
-        });
+        return this.addItem(userAuth, req, 'card');
+    }
+
+    /**
+     * updateCard
+     */
+    public updateCard(userAuth: any, id: any, req: any, endPoint: string): Promise<any> {
+        return this.updateItem(userAuth, id, req, 'card');
     }
 
     /**
      * deleteCard
      */
     public deleteCard(userAuth: any, id: any): Promise<any> {
-        return super.buildAndSendRequest({
-            url: `${this.conf.urlPrefix}/card/${id}`,
-            method: 'DELETE',
-            payload: {},
-            userAuth: userAuth
-        }).then(resp => {
-            return resp;
-        });
+        return this.deleteItem(userAuth, id, 'card');
     }
 
     /**
      * doPayment
      */
     public doPayment(userAuth: any, req: any): Promise<any> {
-        return super.buildAndSendRequest({
-            url: `${this.conf.urlPrefix}/payment`,
-            method: 'POST',
-            payload: req,
-            userAuth: userAuth
-        }).then(resp => {
-            return resp;
-        });
+        return this.addItem(userAuth, req, 'payment');
     }
 
     /**
      * buyCart
      */
     public buyCart(userAuth: any, req: any): Promise<any> {
-        return super.buildAndSendRequest({
-            url: `${this.conf.urlPrefix}/trans`,
-            method: 'POST',
-            payload: req,
-            userAuth: userAuth
-        }).then(resp => {
-            return resp;
-        });
+        return this.addItem(userAuth, req, 'trans');
     }
 
     /**
@@ -211,5 +240,6 @@ export class QKRApi extends JWTRequest {
             return resp;
         });
     }
+
 }
 
