@@ -19,6 +19,71 @@ class QKRApi extends jwtrequest_1.JWTRequest {
         return ret;
     }
     /**
+     * getItem
+     */
+    getItem(userAuth, id, endPoint) {
+        return super.buildAndSendRequest({
+            url: `${this.conf.urlPrefix}/${endPoint}/${id}`,
+            method: 'GET',
+            payload: {},
+            userAuth: userAuth
+        }).then(resp => {
+            return resp;
+        });
+    }
+    /**
+     * getItems
+     */
+    getItems(userAuth, endPoint) {
+        return super.buildAndSendRequest({
+            url: `${this.conf.urlPrefix}/${endPoint}`,
+            method: 'GET',
+            payload: {},
+            userAuth: userAuth
+        }).then(resp => {
+            return resp.list;
+        });
+    }
+    /**
+     * addItem
+     */
+    addItem(userAuth, req, endPoint) {
+        return super.buildAndSendRequest({
+            url: `${this.conf.urlPrefix}/${endPoint}`,
+            method: 'POST',
+            payload: req,
+            userAuth: userAuth
+        }).then(resp => {
+            return resp;
+        });
+    }
+    /**
+     * updateItem
+     */
+    updateItem(userAuth, id, req, endPoint) {
+        return super.buildAndSendRequest({
+            url: `${this.conf.urlPrefix}/${endPoint}/${id}`,
+            method: 'PUT',
+            payload: req,
+            userAuth: userAuth
+        }).then(resp => {
+            return resp;
+        });
+    }
+    /**
+     * deleteItem
+     */
+    deleteItem(userAuth, id, endPoint) {
+        return super.buildAndSendRequest({
+            url: `${this.conf.urlPrefix}/${endPoint}/${id}`,
+            method: 'DELETE',
+            payload: {},
+            userAuth: userAuth
+        }).then(resp => {
+            return resp;
+        });
+    }
+    /**
      * getSecurityQuestions
  :any    */
     getSecurityQuestions() {
@@ -87,92 +152,49 @@ class QKRApi extends jwtrequest_1.JWTRequest {
      * getCarts
  : Promise<any>    */
     getCarts(userAuth) {
-        return super.buildAndSendRequest({
-            url: `${this.conf.urlPrefix}/cart`,
-            method: 'GET',
-            payload: {},
-            userAuth: userAuth
-        }).then(resp => {
-            return resp.list;
-        });
+        return this.getItems(userAuth, 'cart');
     }
     /**
      * addCart
      */
     addCart(userAuth, req) {
-        return super.buildAndSendRequest({
-            url: `${this.conf.urlPrefix}/cartItem`,
-            method: 'POST',
-            payload: req,
-            userAuth: userAuth
-        }).then(resp => {
-            return resp;
-        });
+        return this.addItem(userAuth, req, 'cartItem');
     }
     /**
      * getCards
      */
     getCards(userAuth) {
-        return super.buildAndSendRequest({
-            url: `${this.conf.urlPrefix}/card`,
-            method: 'GET',
-            payload: {},
-            userAuth: userAuth
-        }).then(resp => {
-            return resp.list;
-        });
+        return this.getItems(userAuth, 'card');
     }
     /**
      * addCard
      */
     addCard(userAuth, req) {
-        return super.buildAndSendRequest({
-            url: `${this.conf.urlPrefix}/card`,
-            method: 'POST',
-            payload: req,
-            userAuth: userAuth
-        }).then(resp => {
-            return resp;
-        });
+        return this.addItem(userAuth, req, 'card');
+    }
+    /**
+     * updateCard
+     */
+    updateCard(userAuth, id, req, endPoint) {
+        return this.updateItem(userAuth, id, req, 'card');
     }
     /**
      * deleteCard
      */
     deleteCard(userAuth, id) {
-        return super.buildAndSendRequest({
-            url: `${this.conf.urlPrefix}/card/${id}`,
-            method: 'DELETE',
-            payload: {},
-            userAuth: userAuth
-        }).then(resp => {
-            return resp;
-        });
+        return this.deleteItem(userAuth, id, 'card');
     }
     /**
      * doPayment
      */
     doPayment(userAuth, req) {
-        return super.buildAndSendRequest({
-            url: `${this.conf.urlPrefix}/payment`,
-            method: 'POST',
-            payload: req,
-            userAuth: userAuth
-        }).then(resp => {
-            return resp;
-        });
+        return this.addItem(userAuth, req, 'payment');
     }
     /**
      * buyCart
      */
     buyCart(userAuth, req) {
-        return super.buildAndSendRequest({
-            url: `${this.conf.urlPrefix}/trans`,
-            method: 'POST',
-            payload: req,
-            userAuth: userAuth
-        }).then(resp => {
-            return resp;
-        });
+        return this.addItem(userAuth, req, 'trans');
     }
     /**
      * getLightbox
@@ -185,6 +207,36 @@ class QKRApi extends jwtrequest_1.JWTRequest {
         }).then(resp => {
             return resp;
         });
+    }
+    /**
+     * getAddresses
+     */
+    getAddresses(userAuth) {
+        return this.getItems(userAuth, 'address');
+    }
+    /**
+     * getAddress
+     */
+    getAddress(userAuth, id) {
+        return this.getItem(userAuth, id, 'address');
+    }
+    /**
+     * addAddress
+     */
+    addAddress(userAuth, req) {
+        return this.addItem(userAuth, req, 'address');
+    }
+    /**
+     * updateAddress
+     */
+    updateAddress(userAuth, id, req, endPoint) {
+        return this.updateItem(userAuth, id, req, 'address');
+    }
+    /**
+     * deleteAddress
+     */
+    deleteAddress(userAuth, id) {
+        return this.deleteItem(userAuth, id, 'address');
     }
 }
 exports.QKRApi = QKRApi;

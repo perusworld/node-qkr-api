@@ -17,6 +17,26 @@ export declare class QKRApi extends JWTRequest {
     constructor(conf: any);
     buildJWTHeader(ctx: any): any;
     /**
+     * getItem
+     */
+    getItem(userAuth: any, id: any, endPoint: string): Promise<any>;
+    /**
+     * getItems
+     */
+    getItems(userAuth: any, endPoint: string): Promise<any>;
+    /**
+     * addItem
+     */
+    addItem(userAuth: any, req: any, endPoint: string): Promise<any>;
+    /**
+     * updateItem
+     */
+    updateItem(userAuth: any, id: any, req: any, endPoint: string): Promise<any>;
+    /**
+     * deleteItem
+     */
+    deleteItem(userAuth: any, id: any, endPoint: string): Promise<any>;
+    /**
      * getSecurityQuestions
  :any    */
     getSecurityQuestions(): Promise<any>;
@@ -53,6 +73,10 @@ export declare class QKRApi extends JWTRequest {
      */
     addCard(userAuth: any, req: any): Promise<any>;
     /**
+     * updateCard
+     */
+    updateCard(userAuth: any, id: any, req: any, endPoint: string): Promise<any>;
+    /**
      * deleteCard
      */
     deleteCard(userAuth: any, id: any): Promise<any>;
@@ -68,4 +92,24 @@ export declare class QKRApi extends JWTRequest {
      * getLightbox
      */
     getLightbox(req: any): Promise<any>;
+    /**
+     * getAddresses
+     */
+    getAddresses(userAuth: any): Promise<any>;
+    /**
+     * getAddress
+     */
+    getAddress(userAuth: any, id: any): Promise<any>;
+    /**
+     * addAddress
+     */
+    addAddress(userAuth: any, req: any): Promise<any>;
+    /**
+     * updateAddress
+     */
+    updateAddress(userAuth: any, id: any, req: any, endPoint: string): Promise<any>;
+    /**
+     * deleteAddress
+     */
+    deleteAddress(userAuth: any, id: any): Promise<any>;
 }
