@@ -276,5 +276,11 @@ export class QKRApi extends JWTRequest {
         return this.deleteItem(userAuth, id, "address");
     }
 
+    /**
+     * expressPayment
+     */
+    public expressPayment(userAuth: any, id: any): Promise<any> {
+        return this.addItem(userAuth, id, "expressPayment");
+    }
 }
 

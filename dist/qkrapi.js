@@ -238,6 +238,12 @@ class QKRApi extends jwtrequest_1.JWTRequest {
     deleteAddress(userAuth, id) {
         return this.deleteItem(userAuth, id, "address");
     }
+    /**
+     * expressPayment
+     */
+    expressPayment(userAuth, id) {
+        return this.addItem(userAuth, id, "expressPayment");
+    }
 }
 exports.QKRApi = QKRApi;
 //# sourceMappingURL=qkrapi.js.map

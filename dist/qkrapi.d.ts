@@ -112,4 +112,8 @@ export declare class QKRApi extends JWTRequest {
      * deleteAddress
      */
     deleteAddress(userAuth: any, id: any): Promise<any>;
+    /**
+     * expressPayment
+     */
+    expressPayment(userAuth: any, id: any): Promise<any>;
 }
