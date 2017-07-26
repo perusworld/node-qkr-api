@@ -34,3 +34,23 @@ qkrApi.getMerchants().then(resp => {
 });
 
 ```
+
+## Running testcases ## 
+- Bash
+```bash
+export QKR_PUBLIC_KEY="---qkr-public-key---"
+export QKR_PRIVATE_KEY="---qkr-private-key---"
+export QKR_URL="---qkr-sandbox-or-production-url---"
+export QKR_TEST_USER="--test-user--"
+export QKR_TEST_PWD="--test-password--"
+npm test
+```
+ - Powershell
+```powershell
+$env:QKR_PUBLIC_KEY="---qkr-public-key---"
+$env:QKR_PRIVATE_KEY="---qkr-private-key---"
+$env:QKR_URL="---qkr-sandbox-or-production-url---"
+$env:QKR_TEST_USER="--test-user--"
+$env:QKR_TEST_PWD="--test-password--"
+npm test
+```
