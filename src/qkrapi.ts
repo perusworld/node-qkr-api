@@ -282,5 +282,19 @@ export class QKRApi extends JWTRequest {
     public expressPayment(userAuth: any, id: any): Promise<any> {
         return this.addItem(userAuth, id, "expressPayment");
     }
+
+    /**
+     * getUserProfile
+     */
+    public getUserProfile(userAuth: any, id: any): Promise<any> {
+        return this.getItem(userAuth, id, "user");
+    }
+
+    /**
+     * getCurrentUserProfile
+     */
+    public getCurrentUserProfile(userAuth: any): Promise<any> {
+        return this.getItem(userAuth, userAuth.internalAccountId, "user");
+    }
 }
 

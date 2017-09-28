@@ -9,7 +9,10 @@ describe('check user login', () => {
         let qkrApi = qkrInstance();
         qkrApi.login(email, password).then(resp => {
             console.log(JSON.stringify(resp, null, 2));
-            done();
+            qkrApi.getCurrentUserProfile(resp).then(resp => {
+                console.log(JSON.stringify(resp, null, 2));
+                done();
+            });
         }).catch(err => {
             console.log(err);
             expect(err).toBeNull();
