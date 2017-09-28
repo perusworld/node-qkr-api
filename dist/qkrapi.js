@@ -244,6 +244,18 @@ class QKRApi extends jwtrequest_1.JWTRequest {
     expressPayment(userAuth, id) {
         return this.addItem(userAuth, id, "expressPayment");
     }
+    /**
+     * getUserProfile
+     */
+    getUserProfile(userAuth, id) {
+        return this.getItem(userAuth, id, "user");
+    }
+    /**
+     * getCurrentUserProfile
+     */
+    getCurrentUserProfile(userAuth) {
+        return this.getItem(userAuth, userAuth.internalAccountId, "user");
+    }
 }
 exports.QKRApi = QKRApi;
 //# sourceMappingURL=qkrapi.js.map

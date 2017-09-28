@@ -116,4 +116,12 @@ export declare class QKRApi extends JWTRequest {
      * expressPayment
      */
     expressPayment(userAuth: any, id: any): Promise<any>;
+    /**
+     * getUserProfile
+     */
+    getUserProfile(userAuth: any, id: any): Promise<any>;
+    /**
+     * getCurrentUserProfile
+     */
+    getCurrentUserProfile(userAuth: any): Promise<any>;
 }
